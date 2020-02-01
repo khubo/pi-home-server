@@ -2,8 +2,14 @@ const sensor = require('node-dht-sensor')
 const express = require('express')
 const app = express()
 
+const sensorTypeValue = 11
+const gpioPin = 4
+
+// Result port.
+const port = 3000
+
 app.get('/', (req, res) => {
-    sensor.read(11, 4, (err, temp, humidity) => {
+    sensor.read(sensorTypeValue, gpioPin, (err, temp, humidity) => {
         if (err) return next(err)
 
         return res.send({
@@ -13,4 +19,5 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(3000)
+console.log('serving result at port %d', port)
+app.listen(port)
