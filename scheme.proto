@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rpi;
+
+// service for interacting with the sensors
+service Sensors {
+    rpc getDHTSensorReading (empty) returns (TempAndHumidity) {}
+}
+
+// null
+message empty {}
+
+message TempAndHumidity {
+    required int32 temprature = 1;
+    required int32 humidity = 2;
+}
